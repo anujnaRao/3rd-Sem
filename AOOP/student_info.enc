@@ -1,0 +1,56 @@
+from tkinter import Label,Tk,Button,Entry,Text,Checkbutton,IntVar,StringVar
+from MySQLdb import *
+
+top=Tk()
+top.title("Student Information")
+top.geometry("400x600")
+mvar1=IntVar()
+fvar1=IntVar()
+letext=StringVar()
+adtext=StringVar()
+
+def save():
+    
+def lelen(*args):
+    if(len(letext.get())>10):
+        letext.set(letext.get()[:10])
+def male():
+    m=mvar1.get()
+    if mvar1.get()==1:
+        if fvar1.get()==1:
+            fvar1.set(0)
+
+def fmale():
+    f=fvar1.get()
+    if fvar1.get()==1:
+        if mvar1.get()==1:
+            mvar1.set(0)
+
+def adtrace(*args):
+    if(len(adtext.get())>25):
+        adtext.set(adtext.get()[:25])   
+   
+#    print(mvar1.get(),fvar1.get())
+letext.trace_variable("w",lelen)
+adtext.trace_variable('w',adtrace)
+fl = Label(top,text="FirstName")
+fe = Entry(top,width=30,bd=2)
+ll = Label(top,text="LastName")
+le=Entry(top,width=30,bd=2,insertwidth=20,textvariable=letext,show='*')
+al = Label(top,text="Address")
+ae=Text(top,height=2,width=30,textvariable=adtext)
+sl=Label(top,text="Gender")
+C1 = Checkbutton(top, text = "Male", variable = mvar1, anchor = 'w',  onvalue = 1, offvalue = 0, height=1, width = 20,command=male)
+C2 = Checkbutton(top, text = "Female", variable = fvar1, anchor = 'w', onvalue = 1, offvalue = 0, height=1, width = 20,command=fmale)
+submit = Button(text="submit",command=save)
+fl.grid(row=0,column=0)
+fe.grid(row=0,column=1)
+ll.grid(row=1,column=0)
+le.grid(row=1,column=1)
+al.grid(row=2,column=0)
+ae.grid(row=2,column=1)
+sl.grid(row=3,column=0)
+C1.grid(row=3,column=1)
+C2.grid(row=3,column=2)
+
+top.mainloop()

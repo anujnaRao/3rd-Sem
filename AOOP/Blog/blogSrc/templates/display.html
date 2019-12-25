@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display | BLOG</title>
+   <h1><a href={% url 'index' %}> HOME</a>
+        <a href={% url 'insert' %}> INSERT</a>
+        <a href={% url 'display' %}> DISPLAY</a></h1>
+        <hr>
+</head>
+<body>
+<div>
+    <div>
+        <div>
+            {% for data in shelf %}
+                <span><p>Blog Name: {{ data.name }}</p></span>
+                <span><p>Content: "{{ data.text }}"</p></span>
+                <hr><hr><hr>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

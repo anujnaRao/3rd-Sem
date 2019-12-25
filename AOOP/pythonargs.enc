@@ -1,0 +1,27 @@
+####def foo(req, *args,**kwargs):
+####    print(req)
+####    if args:
+####        print(args)
+####    if kwargs:
+####        print(kwargs)
+####
+#####foo()
+####foo(1)
+####foo(1,2,3,4,5)
+####foo(1,2,3,4,5,key1='123',key2='567')
+####
+##class car:
+##    def __init__(self,color,mileage):
+##        self.color = color
+##        self.mileage = mileage
+##        print("in car",self.color)
+##
+##class always_blue(car):
+##    def __init__(self,*args,**kwargs):
+##        print(args)
+##        arg1 = ('blue',str(args[1]))        
+##        print("always_blue",args)
+##        super().__init__(*arg1,**kwargs)
+##
+##ab = always_blue('black',234)
+##print(ab.color)

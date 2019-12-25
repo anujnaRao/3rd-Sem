@@ -1,0 +1,173 @@
+##class Animal(object):
+##    """A class represnting an aritrary animal."""
+##    def __init__(self,name):
+##        self.name=name
+##    def eat(self):
+##        pass
+##    def go_to_vet(self):
+##        pass
+##    #def __repr__(self):
+##     #   return "representing the Animal class"
+##    def __str__(self):
+##        return "representing the string in animal class"
+##
+##class Cat(Animal):
+##    def call(self):
+##        pass
+##    def purr(self):
+##        pass
+#_____________________________________
+##class testme(object):
+##    def mymethod(self):
+##        return "in mymethod"
+##t=testme()
+##
+##def init(self,name):
+##    self.name=name
+##def eat(self):
+##    pass
+##def go_to_vet(self):
+##    pass
+##def str1(self):
+##    return 'in animal object'
+    
+##Animal = type('Animal', (object,), {
+##'__doc__': """A class represnting an aritrary animal.""",
+##'__init__': init,
+##'__str__':str1,
+##'eat':eat,
+##'go_to':t.mymethod,
+##})
+##a=Animal("hello")
+##a.__doc__
+##a1=a()
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+##def Create_Animal():
+##    """A class representing an aritrary animal."""
+##    def init(self,name=""):
+##        self.name=name
+##        self.count=0
+##    def eat(self):
+##        pass
+##    
+##    def go_to_vet(self):
+##        pass
+##    
+##    def repr1(self):
+##        return "representing the Animal class"
+##    
+##    def str1(self):
+##        return "representing the string in animal class"
+##    
+##    return type('Animal', (object,), {
+##            '__doc__': 'A class represnting an aritrary animal.',
+##            '__init__': init,
+##            'go_to_vet': go_to_vet,
+##            '__repr__':repr1,
+##            })
+##
+##a = Create_Animal()
+##a1 = Create_Animal()
+##print(type(a))
+##print(type(a1))
+##ani1 = a()
+##ani2 = a1("cat")
+##print(type(ani1))
+##print(type(ani2))
+##print(isinstance(ani1,a))
+##print(isinstance(ani1,a1))
+##print(a())
+
+
+###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@        
+##def Create_Animal():
+##    class Animal(object):
+##        """A class represnting an aritrary animal."""
+##        def __init__(self,name):
+##            self.name=name
+##        def eat(self):
+##            pass
+##        def go_to_vet(self):
+##            pass
+##        def __call__(self):
+##            return self
+##        def __repr__(self):
+##            return "representing the Animal class"
+##        def __str__(self):
+##            return "representing the string in animal class"
+##    return Animal
+##
+###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+def get_credential_class(user_proxy=False, tfa=False):
+    """return a class representing a credential for the given service with an attribute representing the expected keys"""
+    if user_proxy:
+        keys = ['service_name', 'email_address']
+    else:
+        keys = ['username', 'password']
+    if tfa:
+        keys.append('tfa_token')
+
+##    class Credential(object):
+##        expected_keys = set(keys)
+    def init(self, **kwargs):
+           if self.expected_keys != set(kwargs.keys()):
+               raise ValueError('keys do no match.')
+           for k, v in kwargs.items():
+               setattr(self, k, v)
+        if(user_proxy):
+            return type('emp',(object,),{'__init__':init,})
+        else:
+            return type('comp',(object,),{'__init__':init,})
+
+
+##class Credential(object):
+##    def__init__(self,username,password):
+##        self.username=username
+##        self.password=password
+
+##c=Credentail("asfadsf","asdfa")
+        
+
+##>>> proxy_user = get_credential_class(user_proxy=True, tfa=False)
+##>>> pu = proxy_user()
+##Traceback (most recent call last):
+##  File "<pyshell#4>", line 1, in <module>
+##    pu = proxy_user()
+##  File "/home/prashanthk/Dropbox/AOOPS_SUBJECT/ppts/sample_programs/metaclasses.py", line 104, in __init__
+##    raise ValueError('keys do no match.')
+##ValueError: keys do no match.
+##>>> pu = proxy_user(service_name = "Time",email_address = "p@p.com")
+##>>> pu.service_name
+##'bbnl'
+##>>> pu.email_address
+##'p@p.com'
+##>>>
+
+
+##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+##import csv
+##def get_credential_class(service):
+##    keys = []
+##    with open('creds.csv','r') as csvfile:
+##        for row in csv.reader(csvfile):
+##            if row[0].lower()!=service.lower():
+##                continue
+##            keys.append(row[1])
+##    class Credential(object):
+##        expected_keys = keys
+##        def __init__(self, **kwargs):
+##            if set(self.expected_keys) !=set([i for i in kwargs.keys()]):
+##                raise ValueError('Keys do not match.')
+##            for k, v in kwargs.items():
+##                setattr(self,k,v)
+##    return Credential
+##gc = get_credential_class("amazon")
+##gc
+##str(gc)
+##agc = gc
+##agc
+##agc.expected_keys
+##gc = get_credential_class("Apple")
+##gc.expected_keys
+##gc.__dict__
+    

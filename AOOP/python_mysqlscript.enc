@@ -1,0 +1,116 @@
+>>> import MySQLdb
+>>> cn = MySQLdb.connect('localhost','root','rvce','employee')
+>>> cur = cn.cursor()
+>>> cur.execute(select * from employee')
+  File "<stdin>", line 1
+    cur.execute(select * from employee')
+                            ^
+SyntaxError: invalid syntax
+>>> cur.execute('select * from employee')
+3
+>>> cur.fetchall()
+((1, 'prashanthk', 'rvce', 'rvce1', '02/04/2017', 35, '9980956', 'active', 'asst prof'), (2, 'asdf', 'asdf', 'rv02', '234123', 32, '2342345', 'active', 'at'), (3, 'vfire', 'vfire', 'rv03', '23/23/23', 34, '1123456789', 'active', 'asd'))
+>>> cur.execute('desc employee')
+9
+>>> cur.fetchall()
+(('slno', 'int(3)', 'YES', '', None, ''), ('name', 'varchar(50)', 'YES', '', None, ''), ('address', 'varchar(100)', 'YES', '', None, ''), ('empcode', 'varchar(5)', 'YES', '', None, ''), ('dateofbirth', 'varchar(10)', 'YES', '', None, ''), ('age', 'int(2)', 'YES', '', None, ''), ('mobile', 'varchar(10)', 'YES', '', None, ''), ('status', 'varchar(6)', 'YES', '', None, ''), ('designation', 'varchar(10)', 'YES', '', None, ''))
+>>> cur.arraysize
+1
+>>> cur.connection
+<_mysql.connection open to 'localhost' at 0x1ed6708>
+>>> cur.description
+(('Field', 253, 11, 64, 64, 0, 0), ('Type', 252, 12, 196605, 196605, 0, 0), ('Null', 253, 3, 3, 3, 0, 0), ('Key', 253, 0, 3, 3, 0, 0), ('Default', 252, 0, 196605, 196605, 0, 1), ('Extra', 253, 0, 30, 30, 0, 0))
+>>> cur.lastrowid;
+0
+>>> cur.lastrowid
+0
+>>> cur.rowcount
+9
+>>> cur.fetchone()
+>>> cur.execute('select * from emp')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/prashanthk/.local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 209, in execute
+    res = self._query(query)
+  File "/home/prashanthk/.local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 315, in _query
+    db.query(q)
+  File "/home/prashanthk/.local/lib/python3.6/site-packages/MySQLdb/connections.py", line 226, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.ProgrammingError: (1146, "Table 'employee.emp' doesn't exist")
+>>> cur.execute('select * from employee')
+3
+>>> cur.fetchone()
+(1, 'prashanthk', 'rvce', 'rvce1', '02/04/2017', 35, '9980956', 'active', 'asst prof')
+>>> cur.fetchone()
+(2, 'asdf', 'asdf', 'rv02', '234123', 32, '2342345', 'active', 'at')
+>>> cur.fetchone()
+(3, 'vfire', 'vfire', 'rv03', '23/23/23', 34, '1123456789', 'active', 'asd')
+>>> cur.fetchall()
+()
+>>> cur.start()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Cursor' object has no attribute 'start'
+>>> cur.next()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Cursor' object has no attribute 'next'
+>>> cur.__iter__()
+<tuple_iterator object at 0x7f2532420a58>
+>>> it=cur.__iter__()
+>>> it.next()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'tuple_iterator' object has no attribute 'next'
+>>> it
+<tuple_iterator object at 0x7f25373014e0>
+>>> print(it)
+<tuple_iterator object at 0x7f25373014e0>
+>>> for i in it:
+...     print(i)
+... 
+(1, 'prashanthk', 'rvce', 'rvce1', '02/04/2017', 35, '9980956', 'active', 'asst prof')
+(2, 'asdf', 'asdf', 'rv02', '234123', 32, '2342345', 'active', 'at')
+(3, 'vfire', 'vfire', 'rv03', '23/23/23', 34, '1123456789', 'active', 'asd')
+>>> cur.rownumber()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'int' object is not callable
+>>> cur.rownumber
+3
+>>> cur.fetchall()
+()
+>>> help(cur)
+
+>>> help(cur)
+
+>>> cur.scroll(1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/prashanthk/.local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 399, in scroll
+    raise IndexError("out of range")
+IndexError: out of range
+>>> cur.scroll(0)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/prashanthk/.local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 399, in scroll
+    raise IndexError("out of range")
+IndexError: out of range
+>>> cur.scroll(2)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/prashanthk/.local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 399, in scroll
+    raise IndexError("out of range")
+IndexError: out of range
+>>> cur.scroll(-2)
+>>> cur.fetchone()
+(2, 'asdf', 'asdf', 'rv02', '234123', 32, '2342345', 'active', 'at')
+>>> cur.scroll(-1)
+>>> cur.fetchone()
+(2, 'asdf', 'asdf', 'rv02', '234123', 32, '2342345', 'active', 'at')
+>>> cur.scroll(-2)
+>>> cur.fetchone()
+(1, 'prashanthk', 'rvce', 'rvce1', '02/04/2017', 35, '9980956', 'active', 'asst prof')
+>>> cn.commit()
+>>> cn.rollback()
+

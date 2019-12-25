@@ -1,0 +1,18 @@
+import tkinter,time
+
+# init tk
+root = tkinter.Tk()
+
+# create canvas
+myCanvas = tkinter.Canvas(root, bg="white", height=400, width=500)
+
+# draw arcs
+coord = 10, 10, 300, 300
+arc = myCanvas.create_arc(coord, start=0, extent=150, fill="red")
+arc = myCanvas.create_line(coord)
+arc=myCanvas.create_rectangle(10,10,500,500,fill="blue")
+print(arc)
+myCanvas.pack()
+# add to window and show
+
+root.mainloop()
